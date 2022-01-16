@@ -1,0 +1,48 @@
+<div class="card my-5">
+    <div class="card-body">
+        <form (ngSubmit)="onSubmit()" #bookForm="ngForm">
+            <div class="form-control">
+                <label for="title">Title</label>
+                <input 
+                    type="text" 
+                    [(ngModel)]="book.title" 
+                    class="form-control"
+                    id="title"
+                    name="title"
+                    placeholder="Enter book title"
+                    required 
+                    #title="ngModel"
+                />
+            </div>
+            <div [hidden]="!title.pristine" class="alert alert-danger">Title is required</div>
+            <div class="form-group">
+                <label for="author">Author</label>
+                <input
+                    type="text"
+                    [(ngModel)]="book.author"
+                    id="author"
+                    class="form-control"
+                    name="author"
+                    placeholder="Enter author of book"
+                    required
+                    #author="ngModel"
+                />
+                <!-- <div [hidden]="!author.pristine" class="alert alert-danger">Author is required</div> -->
+                <div *ngIf="author.invalid && (author.dirty || author.touched)" class="alert alert-danger">
+                
+                    <div *ngIf="author.errors?.['required']">
+                        Author is required.
+                    </div>
+                    <div *ngIf="author.errors?.['minlength']">
+                        Author must be at least 4 characters long.
+                    </div>
+                    <div *ngIf="author.errors?.['forbiddenauthor']">
+                        Author cannot be Bob.
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" [disabled]="!bookForm.form.valid" class="btn btn-info">Submit</button>
+        </form>
+    </div>
+</div>
