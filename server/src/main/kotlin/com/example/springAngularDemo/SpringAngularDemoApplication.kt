@@ -14,7 +14,7 @@ class SpringAngularDemoApplication {
     @Bean
     fun populate(repo: BookRepository): ApplicationRunner = ApplicationRunner {
         listOf(
-            BookEntity(UUID.randomUUID(), "title 1", "author 1"),
+            BookEntity(UUID.fromString("82ba8a5d-fa7d-4ec9-99db-ea3c0a316261"), "title 1", "author 1"),
             BookEntity(UUID.randomUUID(), "title 2", "author 2"),
             BookEntity(UUID.randomUUID(), "title 3", "author 3"),
             BookEntity(UUID.randomUUID(), "title 4", "author 4"),
@@ -22,7 +22,7 @@ class SpringAngularDemoApplication {
         ).forEach {
             repo.save(it)
         }
-        repo.findAll().forEach(::println)
+        repo.findAll().forEach{println(it?.id)}
     }
 }
 

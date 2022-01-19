@@ -11,11 +11,11 @@ import javax.persistence.Id
 @Entity
 class BookEntity(
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-        name = "UUID",
-        strategy = "org.hibernate.id.UUIDGenerator"
-    )
+//    @GeneratedValue(generator = "UUID")
+//    @GenericGenerator(
+//        name = "UUID",
+//        strategy = "org.hibernate.id.UUIDGenerator"
+//    )
     @Type(type = "uuid-char")
     @Column(name = "ID", updatable = false, nullable = false)
     val id: UUID,
