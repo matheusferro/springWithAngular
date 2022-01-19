@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Book } from './book';
 import { SaveBook } from './book';
 import { Observable } from 'rxjs-compat/Observable';
@@ -19,5 +19,10 @@ export class BookService {
 
   public save(book: SaveBook) {
     return this.http.post<SaveBook>(this.booksUrl, book);
+  }
+
+  public findBookById(id: string): Observable<Book> {
+    let params = new HttpParams().set("bookId",id)
+    return this.http.get<Book>(this.booksUrl+"/"+id);
   }
 }

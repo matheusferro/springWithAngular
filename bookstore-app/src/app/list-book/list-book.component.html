@@ -10,9 +10,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let book of books">
-          <td>{{ book.id }}</td>
+          <td><a [routerLink]="['/findBook', book.id]">{{ book.id }}</a></td>
           <td>{{ book.title }}</td>
-          <td><a href="book:{{ book.author }}">{{ book.author }}</a></td>
+          <td>{{ book.author }}</td>
         </tr>
       </tbody>
     </table>
